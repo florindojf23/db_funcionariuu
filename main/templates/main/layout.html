@@ -1,0 +1,112 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DB-FUNCIONARIU | {{title}}</title>
+    <style>
+      .bg-custom-dark-grey {
+          background-color: #085297 !important; /* Sky blue color */
+          color: #ffffff !important; /* Ensure text color is white for contrast */
+      }
+  </style>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <script src="{% static 'vendor/jquery/jquery.min.js'%}"> </script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'datatables/jquery.datatables.css' %}">
+  
+<script type="text/javascript" charset="utf8" src="{% static 'datatables/jquery.datatables.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css'%}">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="{% static 'css/fontastic.css'%}">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- jQuery Circle-->
+    <link rel="stylesheet" href="{% static 'css/grasp_mobile_progress_circle-1.0.0.min.css'%}">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="{% static 'vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css'%}">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{% static 'css/style.default.css'%}" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"></script> -->
+    <!-- Favicon-->
+    <!-- <link rel="shortcut icon" href="{% static 'img/logo.png'%}"> -->
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#table_1').DataTable({
+                    "scrollX":true
+                });
+            });
+            $(document).ready(function(){
+                $('#table_2').DataTable({
+                    "scrollX":true
+                });
+            });
+            $(document).ready( function () {
+                $('#table_id').DataTable({
+                    "aLengthMenu":[[3, 5, 10, 25, -1],[3, 5, 10, 25, "All"]],
+                    "iDisplayLength":3
+                });
+            } );
+        </script>
+  </head>
+  <body>
+    {% if request.user.groups.all.0.name == 'admin' %}
+    {% include 'main/navbar.html' %}
+    {% endif %}
+    {% if request.user.groups.all.0.name == 'funcionariu' %}
+    {% include 'main/GestorNavbar.html' %}
+    {% endif %}
+<div class="page">
+{% include 'main/header.html' %}
+<br>
+    <div class="container" align="right">
+        {% if request.user.groups.all.0.name == 'admin' %}
+        <b class="bg-custom-dark-grey p-2">Admin Geral</b>
+        {% endif %}
+        {% if request.user.groups.all.0.name == 'funcionariu' %}
+        <b class="bg-custom-dark-grey p-2">P&aacute;jina Funcionariu</b>
+        {% endif %}
+    </div>
+<hr>
+{% block content %}{% endblock %}
+      <footer class="main-footer border-top border-danger">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+              <p>DNCT-MS &copy; Since 2024</p>
+            </div>
+            <div class="col-sm-6 text-right">
+              <p>Develope by <a href="https://bootstrapious.com/p/bootstrap-4-dashboard" class="external text-primary">florindojf23  ||  florindojuniorfernandes@gmail.com</a></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- script -->
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{% static 'js/grasp_mobile_progress_circle-1.0.0.min.js'%}"></script>
+    <script src="{% static 'vendor/jquery.cookie/jquery.cookie.js'%}"> </script>
+    <script src="{% static 'vendor/chart.js/Chart.min.js'%}"></script>
+    <script src="{% static 'vendor/jquery-validation/jquery.validate.min.js'%}"></script>
+    <script src="{% static 'vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js'%}"></script>
+    <script src="{% static 'js/charts-custom.js'%}"></script>
+    <!-- Main File-->
+    <script src="{% static 'js/front.js'%}"></script>
+    <script type="text/javascript">
+      function hidediv() {
+        document.getElementById("divmessage").remove();
+      }
+      setTimeout("hidediv()", 5000);
+    </script>
+  </body>
+</html>

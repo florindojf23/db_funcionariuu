@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Correspondent | {{title}}</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .header {
+            text-align: center;
+            font-size: 14px;
+        }
+        .header img {
+            width: 80px; /* Adjust as needed */
+            height: auto;
+        }
+        .header div {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 10px;
+        }
+        .header p {
+            margin: 0;
+        }
+        .title span {
+            color: #007cae;
+        }
+        .details {
+            text-align: left !important;
+        }
+        .hrItem {
+            border: none;
+            height: 1px;
+            color: #333;
+            background-color: #fff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: rgb(185, 169, 169);
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class='wrapper'>
+        <div class="header">
+            <div>
+                <img src="{% static 'foto/rdtl.jpg' %}" alt="Left Logo">
+            </div>
+            <div>
+                <p>REPÚBLICA DEMOCRÁTICA DE TIMOR-LESTE</p>
+                <p>MINISTÉRIO DO ENSINO SUPERIOR, CIÊNCIA E CULTURA</p>
+                <p>Direção Geral do Ensino Superior, Ciência e Cultura</p>
+                <p>Direção Nacional da Ciência e Tecnologia</p>
+                <p>Avenida marginal nu 4, Dili Timor-Leste</p>
+            </div>
+            <div>
+                <img src="{% static 'foto/mescc.jpg' %}" alt="Right Logo">
+            </div>
+        </div>
+        <hr class="hrItem">
+        <br>
+        <b><center><u>Lista de Licenças dos Funcionários do Mescc</u></center></b>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nome Completo</th>
+                    <th>Tipo de Licença</th>
+                    <th>Data de Início</th>
+                    <th>Data de Término</th>
+                    <th>Status</th>
+                    <th>Motivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in dadus %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{data.employee}}</td>
+                    <td>{{data.leave_type}}</td>
+                    <td>{{data.start_date}}</td>
+                    <td>{{data.end_date}} Anos</td>
+                    <td>{{data.status}}</td>
+                    <td>{{data.reason}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

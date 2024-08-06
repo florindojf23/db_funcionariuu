@@ -1,0 +1,290 @@
+<section class="dashboard-header section-padding" style="margin-top: -16px">
+  <div class="container-fluid">
+    <div class="row mb-4 d-flex justify-content-between">
+      <div class="col-lg-4 bg-none p-3">
+        <h5 class="text-center" style="font-weight: unset;">Total FUNCIONÁRIU</h5>
+        <h3 class="text-center" style="font-weight: unset;">PERMANENTE</h3>
+        <p>
+          <h1 class="text-center">{{ permanente }}</h1>
+        </p>
+      </div>
+      <div class="col-lg-4 bg-none p-3">
+        <h5 class="text-center" style="font-weight: unset;">Total FUNCIONÁRIU</h5>
+        <h3 class="text-center" style="font-weight: unset;">AAP</h3>
+        <p>
+          <h1 class="text-center">{{ AAP }}</h1>
+        </p>
+      </div>
+      <div class="col-lg-4 bg-none p-3">
+        <h5 class="text-center" style="font-weight: unset;">Total FUNCIONÁRIU</h5>
+        <h3 class="text-center" style="font-weight: unset;">KAZUAIS</h3>
+        <p>
+          <h1 class="text-center">{{ kazuais }}</h1>
+        </p>
+      </div>
+    </div>
+    <div class="row mb-4 d-flex justify-content-between">
+      <div class="col-lg-6 bg-none p-3">
+        <h5 class="text-center" style="font-weight: unset;">Total FUNCIONÁRIU</h5>
+        <h3 class="text-center" style="font-weight: unset;">TERMO CERTO</h3>
+        <p>
+          <h1 class="text-center">{{ TC }}</h1>
+        </p>
+      </div>
+      <div class="col-lg-6 bg-none p-3">
+        <h5 class="text-center" style="font-weight: unset;">Total FUNCIONÁRIU</h5>
+        <h3 class="text-center" style="font-weight: unset;">AP</h3>
+        <p>
+          <h1 class="text-center">{{ AP }}</h1>
+        </p>
+      </div>
+      <!-- <div class="col-lg-4 bg-none p-3">
+        <h5 class="text-center" style="font-weight: unset;">Total FUNCIONÁRIU</h5>
+        <h3 class="text-center" style="font-weight: unset;">KAZUAIS</h3>
+        <p>
+          <h1 class="text-center">{{ permanente_mescc }}</h1>
+        </p>
+      </div> -->
+    </div>
+    <!-- <div class="row mb-4 d-flex justify-content-between">
+      <div class="col-lg-3 bg-info p-3">
+        <h3 class="text-center" style="font-weight: unset;">Total Funcionarius Permanente</h3>
+        <h1 class="text-center text-red">{{total_estudantes}}</h1>
+      </div>
+      <div class="col-lg-3 bg-success p-3">
+        <h3 class="text-center" style="font-weight: unset;">Total Funcionarius AAP</h3>
+        <h1 class="text-center text-white">80</h1>
+      </div>
+      <div class="col-lg-3 bg-warning p-3">
+        <h3 class="text-center" style="font-weight: unset;">Total Funcionarius Cazuais</h3>
+        <h1 class="text-center text-white">{{total_professores}}</h1>
+      </div>
+    </div> -->
+    <!-- <div class="row mb-4 d-flex justify-content-between">
+      <div class="col-lg-3 bg-info p-3">
+        <h3 class="text-center" style="font-weight: unset;">Total Funcionarius Termo Certo</h3>
+        <h1 class="text-center text-red">{{total_estudantes}}</h1>
+      </div>
+      <div class="col-lg-3 bg-success p-3">
+        <h3 class="text-center" style="font-weight: unset;">Total Funcionarius AP</h3>
+        <h1 class="text-center text-white">80</h1>
+      </div>
+    </div> -->
+    <hr>
+    <div class="row mb-4">
+      <!-- Card 1 -->
+      <div class="col-lg-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title text-center">TOTAL DE FUNCIONÁRIOS POR STATUS</h4>
+            <h6 class="card-title text-center">DNCT</h6>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="text-center">Perm</th>
+                  <th class="text-center">AAP</th>
+                  <th class="text-center">Cazuais</th>
+                  <th class="text-center">TC</th>
+                  <th class="text-center">AP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_perm' %}">{{ permanente }}</a>
+                  </td>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_aap' %}">{{ AAP }}</a>
+                  </td>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_kazuais' %}">{{ kazuais }}</a>
+                  </td>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_tc' %}">{{ TC }}</a>
+                  </td>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_ap' %}">{{ AP }}</a>
+                  </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="col-lg-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title text-center">TOTAL DE FUNCIONÁRIOS POR STATUS</h4>
+            <h6 class="card-title text-center">DNES</h6>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="text-center">Perm</th>
+                  <th class="text-center">AAP</th>
+                  <th class="text-center">Cazuais</th>
+                  <th class="text-center">TC</th>
+                  <th class="text-center">AP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_perm' %}">{{ permanente }}</a>
+                  </td>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_aap' %}">{{ AAP }}</a>
+                  </td>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_kazuais' %}">{{ kazuais }}</a>
+                  </td>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_tc' %}">{{ TC }}</a>
+                  </td>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_ap' %}">{{ AP }}</a>
+                  </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="col-lg-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title text-center">TOTAL DE FUNCIONÁRIOS POR STATUS</h4>
+            <h6 class="card-title text-center">DNCES</h6>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="text-center">Perm</th>
+                  <th class="text-center">AAP</th>
+                  <th class="text-center">Cazuais</th>
+                  <th class="text-center">TC</th>
+                  <th class="text-center">AP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_perm' %}">{{ permanente }}</a>
+                  </td>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_aap' %}">{{ AAP }}</a>
+                  </td>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_kazuais' %}">{{ kazuais }}</a>
+                  </td>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_tc' %}">{{ TC }}</a>
+                  </td>
+                  <td class="text-center">
+                      <a href="{% url 'estatuto_ap' %}">{{ AP }}</a>
+                  </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      
+      <!-- Card 5 -->
+      <!-- <div class="col-lg-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title text-center">IPDC</h4>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Func. Perm</th>
+                  <th>Func. Agentes</th>
+                  <th>Func. Cazuais</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>807</td>
+                  <td>619</td>
+                  <td>33</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div> -->
+      <!-- Card 6 -->
+      <!-- <div class="col-lg-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title text-center">ISC</h4>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Func. Perm</th>
+                  <th>Func. Agentes</th>
+                  <th>Func. Cazuais</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>5,821</td>
+                  <td>5,824</td>
+                  <td>326</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <!-- <div class="row">
+      <div class="col-lg-6">
+        <div class="card line-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>Line Chart Example</h4>
+          </div>
+          <div class="card-body">
+            <canvas id="lineChartExample"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card bar-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>Bar Chart Example</h4>
+          </div>
+          <div class="card-body">
+            <canvas id="barChartExample"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card pie-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>Pie Chart Example</h4>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="pieChartExample"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card polar-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>Ploar Chart Example</h4>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="polarChartExample"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</section>

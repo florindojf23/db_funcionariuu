@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Correspondent | {{title}}</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .header {
+            text-align: center;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header img {
+            width: 80px; /* Adjust as needed */
+            height: auto;
+        }
+        .header-text {
+            flex-grow: 1;
+            text-align: center;
+            margin: 0 10px;
+        }
+        .header p {
+            margin: 5px 0;
+        }
+        .title {
+            margin: 20px 0;
+        }
+        .details {
+            text-align: left !important;
+        }
+        .hrItem {
+            border: none;
+            height: 1px;
+            color: #333;
+            background-color: #fff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: rgba(87, 146, 239, 0.408);
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class='wrapper'>
+        <div class="header">
+            <img src="{% static 'foto/rdtl.jpg' %}" alt="Left Logo">
+            <div class="header-text">
+                <p>REPÚBLICA DEMOCRÁTICA DE TIMOR-LESTE</p>
+                <p>MINISTÉRIO DO ENSINO SUPERIOR, CIÊNCIA E CULTURA</p>
+                <p>Direção Geral do Ensino Superior e Ciência</p>
+                <p>Direção Nacional da Ciência e Tecnologia</p>
+                <p>Avenida marginal no.4, Dili Timor-Leste</p>
+            </div>
+            <img src="{% static 'foto/mescc.jpg' %}" alt="Right Logo">
+        </div>
+        <hr class="hrItem">
+        <br>
+        <b><center><u>Lista Geral dos Funcionarius Mescc</u></center></b>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nome Completo</th>
+                    <th>Sexo</th>
+                    <th>Naturalidade</th>
+                    <th>Data do Nasc.</th>
+                    <th>Data Entrada</th>
+                    <th>Validade</th>
+                    <th>Diresaun</th>
+                    <th>Estatuto</th>
+                    <th>Nu Kontaktu</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in dadus %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{data.nome_completo}}</td>
+                    <td>{{data.sexo}}</td>
+                    <td>{{data.naturalidade}}</td>
+                    <td>{{data.data_do_nasc}}</td>
+                    <td>{{data.data_entrada}}</td>
+                    <td>{{data.validade}}</td>
+                    <td>{{data.direction.sigla}}</td>
+                    <td>{{data.estatuto}}</td>
+                    <td>{{data.nu_contacto}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="footer">
+            <p>REPÚBLICA DEMOCRÁTICA DE TIMOR-LESTE - MINISTÉRIO DO ENSINO SUPERIOR, CIÊNCIA E CULTURA</p>
+        </div>
+    </div>
+</body>
+</html>

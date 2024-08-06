@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .bg-white {
+            background-color: #085297 !important; /* Sky blue color */
+            color: #ffffff !important; /* Ensure text color is white for contrast */
+        }
+    </style>
+</head>
+<body>
+<header class="header border-bottom border-custom-dark-grey">
+        <nav class="navbar bg-white">
+          <div class="container-fluid">
+            <div class="navbar-holder d-flex align-items-center justify-content-between">
+              <div class="navbar-header">
+                <a id="toggle-btn" href="#" class="menu-btn bg-custom-dark-grey"><i class="icon-bars"> </i></a>
+                <a href="{% url 'home' %}" class="navbar-brand">
+                  <div class="brand-text d-none d-md-inline-block text-info"><strong class="text-white">DB-FUNCIONARIU</strong></div>
+                </a>
+              </div>
+              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                <!-- username dropdown    -->
+                <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link text-white dropdown-toggle">
+                {% if request.user.groups.all.0.name == 'admin' %}
+                Admin Geral VMS
+                {% endif %}
+                {% if request.user.groups.all.0.name == 'funcionariu' or request.user.groups.all.0.name == 'funcionariu' %}
+                {{request.user.funcionariu2.funcionariu}}
+                {% endif %}
+              </a>
+                  <ul aria-labelledby="languages" class="dropdown-menu">
+                    <li><a rel="nofollow" href="{% url 'change_password' %}" class="dropdown-item"> <i class="fa fa-cogs"></i><span>Change Password</span></a></li>
+                    <li>
+                      <a rel="nofollow" href="{% url 'logout' %}" class="dropdown-item"><i class="fa fa-sign-out"></i><span>Logout</span></a>
+                    </li>
+                   
+                  </ul>
+                </li>
+                <!-- Log out-->
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      </body>
+      </html>

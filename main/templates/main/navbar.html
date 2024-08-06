@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .bg-custom-dark-grey {
+            background-color: #085297 !important; /* Sky blue color */
+            color: #ffffff !important; /* Ensure text color is white for contrast */
+        }
+    </style>
+</head>
+<body>
+<nav class="side-navbar bg-custom-dark-grey">
+      <div class="side-navbar-wrapper">
+        <!-- Sidebar Header    -->
+        <div class="sidenav-header bg-custom-dark-grey d-flex align-items-center justify-content-center">
+          <!-- User Info-->
+          <div class="sidenav-header-inner text-center">
+            <h2 class="h5">Admin</h2><span>User Admin</span>
+          </div>
+          <!-- Small Brand information, appears on minimized sidebar-->
+          <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong class="text-dark">SBDF-MESCC</strong><strong class="text-white"></strong></a></div>
+        </div>
+        <hr class="bg-white">
+        <!-- Sidebar Navigation Menus-->
+        <!-- <div class="main-menu">
+          <h6 class="sidenav-heading">Menu</h6>
+          <ul id="side-main-menu" class="side-menu list-unstyled">                  
+            <li class="{{active_varanda}}"><a href="{% url 'home' %}"> <i class="icon-home"></i>Home</a></li>
+            <li class="{{active_estudante}}"><a href="#"> <i class="icon-form"></i>Lista Estudantes</a></li>
+          </ul>
+        </div> -->
+      </div>
+      <div class="main-menu">
+        <h5 class="sidenav-heading">MENU</h5>
+        <ul id="side-main-menu" class="side-menu list-unstyled">                  
+            <li><a href="{% url 'home' %}"> <i class="icon-home"></i>Home</a></li>
+            <li>
+                <a href="#funcionariuDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>DNCT</a>
+                <ul id="funcionariuDropdown" class="collapse list-unstyled">
+                    <li><a href="{% url 'funcionariu' %}">Lista dos Funcionários</a></li>
+                </ul>
+                <ul id="funcionariuDropdown" class="collapse list-unstyled">
+                  <li><a href="{% url 'leave' %}">Lista Licença dos Funcionários</a></li>
+              </ul>
+                <ul id="funcionariuDropdown" class="collapse list-unstyled">
+                  <li><a href="{% url 'history_leave' %}">Lista Arquivado Licença dos Funcionários</a></li>
+              </ul>
+              <ul id="funcionariuDropdown" class="collapse list-unstyled">
+                <li><a href="{% url 'user_list' %}">Users List</a></li>
+            </ul>
+            <ul id="funcionariuDropdown" class="collapse list-unstyled">
+              <li><a href="{% url 'charts' %}">Grafiku</a></li>
+          </ul>
+            </li>
+            <!-- <li>
+                <a href="#exampledropdownDropdown2" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>DNES</a>
+                <ul id="exampledropdownDropdown2" class="collapse list-unstyled">
+                    <li><a href="#">Lista Funcionarios</a></li>
+                </ul>
+            </li> -->
+        </ul>
+    </div>
+    </nav>
+    </body>
+    </html>

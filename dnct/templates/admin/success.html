@@ -1,0 +1,26 @@
+{% extends 'main/layout.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Success</title>
+</head>
+<body>
+    <h2 class="text-center">Sucesso na importação de dados</h2>
+    
+    <!-- Add a button to redirect or perform another action -->
+    <div class="text-center">
+        <a href="{% url 'upload_csv' %}" class="btn btn-primary">Upload Outro CSV</a>
+    </div>
+    
+    <!-- Optionally, you can add more buttons -->
+    <div class="text-center mt-3">
+        <a href="{% url 'funcionariu' %}" class="btn btn-secondary">Haree Lista</a>
+    </div>
+</body>
+</html>
+
+{% endblock %}

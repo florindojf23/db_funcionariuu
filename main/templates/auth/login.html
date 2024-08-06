@@ -1,0 +1,58 @@
+{% extends "main/login_layout.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .bg-sky-blue {
+            background-color: #085297 !important; /* Sky blue color */
+            color: #ffffff !important; /* Ensure text color is white for contrast */
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* Adjust the space between logo and text */
+        }
+        .header-logo {
+            max-width: 150px; /* Adjust the size of the logo */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-sky-blue mb-5 p-1 text-white">
+        <div class="header-container">
+            <img src="{% static 'images/mescc3.png' %}" alt="Logo" class="header-logo">
+            <h2 class="text-center">SISTEMA BASE DE DADOS FUNCIONÁRIO – MINISTÉRIO DO ENSINO SUPERIOR, CIÊNCIA E CULTURA</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-sm-4">
+            <div class="card shadow-lg pt-1 rounded">
+                <div class="card-header text-center bg-sky-blue"><h1 style="color: #ffffff">LOGIN</h1></div>
+                <div class="card-body">
+                    <br>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <a class="small" href="#">Esqueceu-se da sua senha?</a>
+                        <div class="form-group mt-4 mb-0">
+                            <button class="btn btn-sm btn-outline-info" type="submit">Log In <i class="fa fa-sign-in"></i></button>
+                        </div>
+                    </form>
+                </div> <!-- end card-body -->
+            </div> <!-- end card -->
+        </div> <!-- end col -->
+    </div> <!-- end row -->
+    <footer class="text-muted text-center mt-4">
+        <p style="font-size: 0.8rem">SBDF-MESCC &copy; Since 2024</p>
+    </footer>
+</body>
+</html>
+{% endblock %}

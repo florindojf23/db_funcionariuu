@@ -1,0 +1,372 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Grafiku</h1>
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <div class="col-xl-8 col-lg-7">
+
+                            <!-- Area Chart -->
+                            <!-- <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
+                                    </div>
+                                    <hr>
+                                    Styling for the area chart can be found in the
+                                    <code>/js/demo/chart-area-demo.js</code> file.
+                                </div>
+                            </div> -->
+
+                            <!-- Bar Chart -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-bar">
+                                        <canvas id="myBarChart1" data-url="{% url 'chart_seksu_funcionariu' %}"></canvas>
+                                    </div>
+                                    <hr>
+                                   Grafiku Tuir Sexo
+                                </div>
+                            </div>
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-bar">
+                                        <canvas id="myBarChart2" data-url="{% url 'chart_estatuto_funcionariu' %}"></canvas>
+                                    </div>
+                                    <hr>
+                                    Grafiku Tuir Estatuto
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Donut Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4">
+                                        <canvas id="myPieChart" data-url="{% url 'chart_municipiu' %}"></canvas>
+                                    </div>
+                                    <hr>
+                                    Grafiku Tuir Municipiu
+                                </div>
+                            </div>
+                            <div class="card shadow mb-4">
+                              <!-- Card Header - Dropdown -->
+                              <div class="card-header py-3">
+                                  <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                              </div>
+
+                              <!-- Card Body -->
+                              <div class="card-body">
+                                  <div class="chart-pie pt-4">
+                                      <canvas id="myPieChart2" data-url="{% url 'chart_statusonoff_funcionariu' %}"></canvas>
+                                  </div>
+                                  <hr>
+                                  Grafiku Status
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                
+                <!-- /.container-fluid -->
+ <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+<script type="text/javascript">
+    $(function() {
+        var $chart_seksu_funcionariu = $('#myBarChart1');
+        $.ajax({
+            url: $chart_seksu_funcionariu.data("url"),
+            success: function (data) {
+                var ctx = $chart_seksu_funcionariu[0].getContext("2d");
+
+                new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                    labels: data.labels,
+                    datasets: [{
+                      label: "Funcionariu",
+                      backgroundColor: ["#4e73df","red"],
+                      hoverBackgroundColor: "#2e59d9",
+                      borderColor: "#4e73df",
+                      data: data.data,
+                    }],
+                  },
+                  options: {
+                    maintainAspectRatio: false,
+                    layout: {
+                      padding: {
+                        left: 10,
+                        right: 25,
+                        top: 25,
+                        bottom: 0
+                      }
+                    },
+                    scales: {
+                      xAxes: [{
+                        time: {
+                          unit: 'month'
+                        },
+                        gridLines: {
+                          display: false,
+                          drawBorder: false
+                        },
+                        ticks: {
+                          maxTicksLimit: 6
+                        },
+                        maxBarThickness: 25,
+                      }],
+                      yAxes: [{
+                        ticks: {
+                          min: 0,
+                          max: 100,
+                          maxTicksLimit: 10,
+                          padding: 20,
+                          stepsize : 4
+                          // Include a dollar sign in the ticks
+                          
+                        },
+                        gridLines: {
+                          color: "rgb(234, 236, 244)",
+                          zeroLineColor: "rgb(234, 236, 244)",
+                          drawBorder: false,
+                          borderDash: [2],
+                          zeroLineBorderDash: [2]
+                        }
+                      }],
+                    },
+                    legend: {
+                      display: false
+                    },
+                    tooltips: {
+                      titleMarginBottom: 10,
+                      titleFontColor: '#6e707e',
+                      titleFontSize: 14,
+                      backgroundColor: "rgb(255,255,255)",
+                      bodyFontColor: "#858796",
+                      borderColor: '#dddfeb',
+                      borderWidth: 1,
+                      xPadding: 15,
+                      yPadding: 15,
+                      displayColors: false,
+                      caretPadding: 10,
+                      
+                    },
+                  }
+                });
+
+            }
+        });
+    });
+
+// Municipiu Donut Chart
+$(function() {
+    var $chart_municipiu = $('#myPieChart');
+    $.ajax({
+        url: $chart_municipiu.data("url"),
+        success: function (data) {
+            var ctx = $chart_municipiu[0].getContext("2d");
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        data: data.data,
+                        backgroundColor: [
+                            '#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b',
+                            '#858796', '#20c9a6', '#f8b400', '#27d4a3', '#d80032',
+                            '#5f0a87', '#ff6347', '#d2b48c', '#4682b4'
+                        ],
+                        hoverBackgroundColor: [
+                            '#2e59d9', '#17a673', '#2c9faf', '#f1b31c', '#e24d3a',
+                            '#5a5c69', '#1d9a75', '#d49a00', '#1ab394', '#b80028',
+                            '#450a5b', '#ff4500', '#bc8f8f', '#4169e1'
+                        ],
+                        hoverBorderColor: "rgba(234, 236, 244, 1)",
+                    }],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        caretPadding: 10,
+                    },
+                    legend: {
+                        display: true
+                    },
+                    cutoutPercentage: 80,
+                },
+            });
+
+        }
+    });
+});
+
+
+    $(function() {
+        var $chart_estatuto_funcionariu = $('#myBarChart2');
+        $.ajax({
+            url: $chart_estatuto_funcionariu.data("url"),
+            success: function (data) {
+                var ctx = $chart_estatuto_funcionariu[0].getContext("2d");
+
+                new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                    labels: data.labels,
+                    datasets: [{
+                      label: "Funcionariu",
+                      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b',
+                            '#858796', '#20c9a6', '#f8b400', '#27d4a3', '#d80032',],
+                      hoverBackgroundColor: "#2e59d9",
+                      borderColor: "#4e73df",
+                      data: data.data,
+                    }],
+                  },
+                  options: {
+                    maintainAspectRatio: false,
+                    layout: {
+                      padding: {
+                        left: 10,
+                        right: 25,
+                        top: 25,
+                        bottom: 0
+                      }
+                    },
+                    scales: {
+                      xAxes: [{
+                        time: {
+                          unit: 'month'
+                        },
+                        gridLines: {
+                          display: false,
+                          drawBorder: false
+                        },
+                        ticks: {
+                          maxTicksLimit: 6
+                        },
+                        maxBarThickness: 25,
+                      }],
+                      yAxes: [{
+                        ticks: {
+                          min: 0,
+                          max: 100,
+                          maxTicksLimit: 10,
+                          padding: 20,
+                          stepsize : 4
+                          // Include a dollar sign in the ticks
+                          
+                        },
+                        gridLines: {
+                          color: "rgb(234, 236, 244)",
+                          zeroLineColor: "rgb(234, 236, 244)",
+                          drawBorder: false,
+                          borderDash: [2],
+                          zeroLineBorderDash: [2]
+                        }
+                      }],
+                    },
+                    legend: {
+                      display: false
+                    },
+                    tooltips: {
+                      titleMarginBottom: 10,
+                      titleFontColor: '#6e707e',
+                      titleFontSize: 14,
+                      backgroundColor: "rgb(255,255,255)",
+                      bodyFontColor: "#858796",
+                      borderColor: '#dddfeb',
+                      borderWidth: 1,
+                      xPadding: 15,
+                      yPadding: 15,
+                      displayColors: false,
+                      caretPadding: 10,
+                      
+                    },
+                  }
+                });
+
+            }
+        });
+    });
+
+  
+// Diresaun/Unidade Donut Chart
+$(function() {
+        var $chart_statusonoff_funcionariu = $('#myPieChart2');
+        $.ajax({
+            url: $chart_statusonoff_funcionariu.data("url"),
+            success: function (data) {
+                var ctx = $chart_statusonoff_funcionariu[0].getContext("2d");
+
+                new Chart(ctx, {
+                  type: 'doughnut',
+                  data: {
+                    labels: data.labels,
+                    datasets: [{
+                      data: data.data,
+                      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                      hoverBorderColor: "rgba(234, 236, 244, 1)",
+                    }],
+                  },
+                  options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                      backgroundColor: "rgb(255,255,255)",
+                      bodyFontColor: "#858796",
+                      borderColor: '#dddfeb',
+                      borderWidth: 1,
+                      xPadding: 15,
+                      yPadding: 15,
+                      displayColors: false,
+                      caretPadding: 10,
+                    },
+                    legend: {
+                      display: true
+                    },
+                    cutoutPercentage: 80,
+                  },
+                });
+
+            }
+        });
+    });
+
+</script>
+
+{% endblock %}

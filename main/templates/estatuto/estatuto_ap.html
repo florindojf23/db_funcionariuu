@@ -1,0 +1,89 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="col-sm-12 p-4">
+	 <div class="breadcrumb-holder">
+        <div class="container-fluid">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Varanda</a></li>
+            <li class="breadcrumb-item active">{{title}}       </li>
+          </ul>
+        </div>
+      </div>
+      <section>
+        <div class="container-fluid">
+                    {% if messages %}
+                        {% for message in messages %} 
+                            <div id="divmessage" class="alert alert-{{ message.tags }} alert-dismissable">
+                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                              {{message}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+          <div class="row mt-3">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between text-center">
+                  <div class="text-center">
+                    <h3>{{title}}</h3>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <div class="text-center">
+                      <a href="{% url 'pdf_funcionariu' %}" target="_blank" class="btn btn-sm btn-info" title="Print Data"> <i class="fa fa-print"></i> Print Pdf</a>
+                      <a href="{% url 'csv_funcionariu' %}" target="_blank" class="btn btn-sm btn-info" title="Print Data"> <i class="fa fa-print"></i> Print Csv</a>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="example" class="table table-hover table-bordered" width="100%">
+                      <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Posição</th>
+                            <th>Tipo de Contrato</th>
+                            <th>Validade</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for funcionario in funcionarios %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ funcionario.nu_id }}</td>
+                            <td>{{ funcionario.nome_completo }}</td>
+                            <td>{{ funcionario.posição }}</td>
+                            <td>{{ funcionario.estatuto }}</td>
+                            <td>{{ funcionario.validade }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center">No funcionarios found.</td>
+                        </tr>
+                    {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</div>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+<script>
+  $(document).ready(function() {
+      $('#example').DataTable();
+  });
+</script>
+
+{% endblock %}

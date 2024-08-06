@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DB_FUNCIONARIU | {{title}}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <script src="{% static 'vendor/jquery/jquery.min.js'%}"> </script>
+<link rel="stylesheet" type="text/css" href="{% static 'datatables/jquery.datatables.css' %}">
+<script type="text/javascript" charset="utf8" src="{% static 'datatables/jquery.datatables.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css'%}">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="{% static 'css/fontastic.css'%}">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- jQuery Circle-->
+    <link rel="stylesheet" href="{% static 'css/grasp_mobile_progress_circle-1.0.0.min.css'%}">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="{% static 'vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css'%}">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{% static 'css/style.default.css'%}" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"></script> -->
+    <!-- Favicon-->
+    <!-- <link rel="shortcut icon" href="{% static 'img/logo.png'%}"> -->
+    <style type="text/css">
+        .asteriskField{
+            display: none;
+        }
+    </style>
+  </head>
+  <body>
+{% block content %}
+{% endblock %}
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{% static 'js/grasp_mobile_progress_circle-1.0.0.min.js'%}"></script>
+    <script src="{% static 'vendor/jquery.cookie/jquery.cookie.js'%}"> </script>
+    <script src="{% static 'vendor/chart.js/Chart.min.js'%}"></script>
+    <script src="{% static 'vendor/jquery-validation/jquery.validate.min.js'%}"></script>
+    <script src="{% static 'vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js'%}"></script>
+    <script src="{% static 'js/charts-custom.js'%}"></script>
+    <!-- Main File-->
+    <script src="{% static 'js/front.js'%}"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">User List</h1>
+    
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary text-muted">
+                <a href="{% url 'home' %}">Home</a> / User List
+            </h6>
+            <!-- <div class="d-flex justify-content-between">
+                <a class="btn btn-sm btn-primary btn-icon-split mr-1" href="{% url 'add_user' %}">
+                    <span class="icon text-white-50">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                    <span class="text">Add User</span>
+                </a>
+            </div> -->
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Status</th>
+                            <th>Date Created</th>
+                            <th>Last Login</th>
+                            <!-- <th>Actions</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in userlist %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td class="editable" data-id="{{ data.id }}" data-type="username">{{ data.username }}</td>
+                            <td class="editable" data-id="{{ data.id }}" data-type="email">{{ data.email }}</td>
+                            <td class="editable" data-id="{{ data.id }}" data-type="first_name">{{ data.first_name }}</td>
+                            <td class="editable" data-id="{{ data.id }}" data-type="last_name">{{ data.last_name }}</td>
+                            <td>
+                                {% if data.is_active %}
+                                    <center><span class="badge badge-secondary">Active</span></center>
+                                {% else %}
+                                    <center><span class="badge badge-warning">Not Active</span></center>
+                                {% endif %}
+                            </td>
+                            <td>{{ data.date_joined | date:"F d Y" }}</td>
+                            <td>{{ data.last_login }}</td>
+                            <!-- <td>
+                                <a href="{% url 'edit_user' data.id %}" class="btn btn-sm btn-success">
+                                    <span class="icon">
+                                        <i class="fa fa-pencil"></i>
+                                    </span>
+                                </a>
+                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-{{ data.id }}">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                Delete Modal
+                                <div class="modal fade" id="delete-{{ data.id }}" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            Modal Header
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Delete User</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            Modal Body
+                                            <div class="modal-body">
+                                                Are you sure you want to delete the user "{{ data.username | upper }}"?
+                                            </div>
+                                            Modal Footer
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <a href="{% url 'delete_user' data.id %}" class="btn btn-primary">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td> -->
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    // Action when double-click
+    $(document).on("dblclick", ".editable", function () {
+        var value = $(this).text();
+        var input = "<input type='text' class='input-data form-control' value='" + value + "'>";
+        $(this).html(input);
+        $(this).removeClass("editable");
+    });
+
+    $(document).on("blur", ".input-data", function () {
+        var value = $(this).val();
+        var td = $(this).parent("td");
+        $(this).remove();
+        td.html(value);
+        td.addClass("editable");
+        var type = td.data("type");
+        sendToServer(td.data("id"), value, type);
+    });
+
+    // Remove editable on Enter key
+    $(document).on("keypress", ".input-data", function (e) {
+        var key = e.which;
+        if (key == 13) {
+            var value = $(this).val();
+            var td = $(this).parent("td");
+            $(this).remove();
+            td.html(value);
+            td.addClass("editable");
+            var type = td.data("type");
+            sendToServer(td.data("id"), value, type);
+        }
+    });
+
+    // Send data to server
+    function sendToServer(id, value, type) {
+        $.ajax({
+            url: "{% url 'update_user' %}",
+            type: "POST",
+            data: {
+                id: id,
+                type: type,
+                value: value,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (response) {
+                console.log("Error occurred");
+            }
+        });
+    }
+});
+</script>
+{% endblock %}
