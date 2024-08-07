@@ -27,7 +27,6 @@ SECRET_KEY = "django-insecure-usdjh!$52_-7ib_@ygm1^m)e6dpr5==scv6i2+e@i2+h%8q6!b
 DEBUG = True
 
 ALLOWED_HOSTS = ['db_funcionariuu.onrender.com','*']
-AUTH_USER_MODEL = 'user.User'
 
 
 
@@ -65,6 +64,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'widget_tweaks',
     'import_export',
+    'whitenoise',
 
 ]
 
@@ -74,6 +74,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -144,9 +145,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL =  '/images/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static_files')
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR,'images')
 
