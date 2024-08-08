@@ -34,7 +34,7 @@ def g_funcionariu(request):
     return render(request, 'gestor/listafuncionariu.html',data)
 
 @login_required
-def detailFuncionariu(request,pk):
+def g_detailFuncionariu(request,pk):
     funcionariuData = get_object_or_404(Funcionariu,id=pk)
     data = {
     'title':"Detalho do Funcionário",

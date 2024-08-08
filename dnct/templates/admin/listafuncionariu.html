@@ -56,7 +56,6 @@
                           <th>Data do Nasc.</th>
                           <th>Data Entrada</th>
                           <th>Validade</th>
-                          <th>Status</th>
                           <th>Foto</th>
                           <th>Acção</th>
                         </tr>
@@ -72,7 +71,6 @@
                           <td>{{ data.data_do_nasc }}</td>
                           <td>{{ data.data_entrada }}</td>
                           <td>{{ data.validade }}</td>
-                          <td>{{ data.estatus_onoff }}</td>
                           <td>
                             {% if data.fotografia %}
                             <img src="{{ data.fotografia.url }}" width="70px" height="70px"/>
@@ -89,7 +87,7 @@
                           </td> -->
                           <td>
                             <div class="d-flex">
-                              <div class="flex-fill"><a href="{% url 'update_funcionariu' data.id %}" class="btn btn-sm" style="color: #2b90d9;" title="Atualiza Dados"><i class="fa fa-pencil" style="color: #2b90d9;"></i></a></div>
+                              <div class="flex-fill"><a href="{% url 'update_detail_funcionariu' data.id %}" class="btn btn-sm" style="color: #2b90d9;" title="Atualiza Dados"><i class="fa fa-pencil" style="color: #2b90d9;"></i></a></div>
                               <div class="flex-fill"> <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-{{ data.id }}" style="text-decoration: none"><i class="fa fa-remove"></i></button></div>
                             </div>
                            </td>

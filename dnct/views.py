@@ -55,9 +55,9 @@ def createFuncionariu(request):
     return render(request, 'admin/formfuncionariu.html',data)
 
 @login_required
-def updateFuncionariu(request, id):
+def updateDetailFuncionariu(request, id):
     tinan = Tinan.objects.all().order_by('-id')
-    funcionariu= Funcionariu.objects.get(id=id)
+    funcionariu = get_object_or_404(Funcionariu, id=id)
     form = FuncionariuForm(instance=funcionariu)
 
     if request.method == 'POST':
@@ -67,12 +67,13 @@ def updateFuncionariu(request, id):
             messages.success(request, 'Dados Está Atualizado!')
             return redirect('funcionariu')
     data = {
-        'form':form,
-        'tinan':tinan,
-        'title':"Formulário de Atualização de Funcionário",
-        'page':"form",
+        'form': form,
+        'tinan': tinan,
+        'title': "Formulário de Atualização de Funcionário",
+        'page': "form",
     }
-    return render(request, 'admin/formfuncionariu.html',data)
+    return render(request, 'admin/formfuncionariu.html', data)
+
 
 @login_required
 def deleteFuncionariu(request,pk):

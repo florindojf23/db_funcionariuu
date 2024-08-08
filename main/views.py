@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404,HttpResponse
 from .models import *
 from dnct.models import *
 from custom.models import *
@@ -95,3 +95,21 @@ def custom_logout(request):
     else:
         # You might want to handle GET requests differently or show a confirmation page
         return redirect('login')
+    
+# @login_required
+# def profile_view(request, username):
+#     # Fetch the user based on the username
+#     user = get_object_or_404(User, username=username)
+#     return render(request, 'profile.html', {'user': user})
+
+# @login_required
+# def profile_update(request, username):
+#     user = get_object_or_404(User, username=username)
+#     if request.method == 'POST':
+#         form = UserProfileForm(request.POST, request.FILES, instance=user.userprofile)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('profile', username=username)
+#     else:
+#         form = UserProfileForm(instance=user.userprofile)
+#     return render(request, 'profile_update.html', {'form': form})

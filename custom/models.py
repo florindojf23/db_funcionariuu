@@ -77,3 +77,11 @@ class Estatus(models.Model):
 
     def __str__(self):
         return self.get_estatus_display()
+
+
+class Nivel_Estudo(models.Model):
+	name = models.CharField(max_length=40, null=True)
+
+	def __str__(self):
+		template = '{0.name}'
+		return template.format(self)

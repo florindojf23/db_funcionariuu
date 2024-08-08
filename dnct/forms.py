@@ -40,9 +40,12 @@ class FuncionariuForm(forms.ModelForm):
         self.fields['direction'].label = 'Direção/Unidade'
         self.fields['endereço'].label = 'Endereço'
         self.fields['município'].label = 'Município'
-        self.fields['estatuto'].label = 'Tipo de Contrato'
+        self.fields['estatuto'].label = 'Tipo de Estatuto'
+        self.fields['nivel_estudo'].label = 'Nível do Estudo'
+        self.fields['especialidade'].label = 'Área Especialidade'
+        self.fields['grau'].label = 'Grau/Escala'
         self.fields['estatus_onoff'].label = 'Status'
-        self.fields['nu_contacto'].label = 'No Contacto'
+        self.fields['nu_contacto'].label = 'Nú Contacto'
         self.fields['email'].label = 'Email'
         self.fields['fotografia'].label = 'Fotografia'
         self.fields['documentos'].label = 'Documentos'
@@ -68,14 +71,19 @@ class FuncionariuForm(forms.ModelForm):
             ),
             Row(
                 Column('endereço', css_class='form-group col-md-3 mb-0'),
-                Column('município', css_class='form-group col-md-6 mb-0'),
+                Column('município', css_class='form-group col-md-3 mb-0'),
                 Column('estatuto', css_class='form-group col-md-3 mb-0'),
+                Column('grau', css_class='form-group col-md-3 mb-0'),
             ),
             Row(
-                Column('nu_contacto', css_class='form-group col-md-3 mb-0'),
-                Column('email', css_class='form-group col-md-6 mb-0'),
-                Column('estatus_onoff', css_class='form-group col-md-3 mb-0'),
+                Column('nivel_estudo', css_class='form-group col-md-3 mb-0'),
+                Column('especialidade', css_class='form-group col-md-6 mb-0'),
+                Column('email', css_class='form-group col-md-3 mb-0'),
 
+            ),
+            Row(
+                Column('nu_contacto', css_class='form-group col-md-6 mb-0'),
+                Column('estatus_onoff', css_class='form-group col-md-6 mb-0'),
             ),
             Row(
                 Column('fotografia', css_class='form-group col-md-6 mb-0'),

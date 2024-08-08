@@ -11,8 +11,6 @@ admin.site.register(AcademicLevel)
 admin.site.register(Religion)
 admin.site.register(Status)
 admin.site.register(Estatus)
-
-# Register your models here.
-from django.contrib import admin
+admin.site.register(Nivel_Estudo)
 
 # Register your models here.

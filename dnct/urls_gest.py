@@ -4,7 +4,7 @@ from . import views_gest
 
 urlpatterns=[
 	path('g_funcionariu',g_funcionariu, name='g_funcionariu'),
-    path('detail_funcionariu/<str:pk>', detailFuncionariu,  name = 'detail_funcionariu'),
+    path('g_detail_funcionariu/<str:pk>', g_detailFuncionariu,  name = 'g_detail_funcionariu'),
 	path('csv_funcionariu/', csv_funcionariu, name="csv_funcionariu"),
 	path('pdf_funcionariu/', pdf_funcionariu, name="pdf_funcionariu"),
 
