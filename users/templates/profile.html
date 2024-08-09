@@ -1,0 +1,212 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #f0f2f5;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Unique Header Styles */
+        /* .unique-header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+        } */
+
+        .unique-header-container h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .unique-header-container nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .unique-header-container a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            background-color: #00bcd4;
+        }
+
+        /* Profile Page Styles */
+        .profile-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .profile-header h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .profile-header a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #00bcd4;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .form-group label {
+            flex: 1;
+            margin-right: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input {
+            flex: 2;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .profile-picture {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .profile-header h1 {
+                margin-bottom: 10px;
+            }
+
+            .form-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .form-group label, .form-group input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .profile-picture img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-container {
+                padding: 15px;
+            }
+
+            .profile-header h1 {
+                font-size: 20px;
+            }
+
+            .profile-header a {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            .form-group input {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="unique-header-container">
+        <h1>My Application</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Profile</a>
+            <a href="#">Logout</a>
+        </nav>
+    </div> -->
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1>Profile {{ user.username }}</h1>
+            <!-- <a href="#">Update Profile</a> -->
+        </div>
+        <div class="profile-picture">
+            {% if user.userprofile.profile_picture %}
+                <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture">
+            {% else %}
+                <img src="{% static 'default_profile_pic.jpg' %}" alt="Default Profile Picture">
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="{{ user.username }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ user.email }}" readonly>
+        </div>
+        <!-- <div class="update-button">
+            <a href="#">Update Profile</a>
+        </div> -->
+    </div>
+
+    <script>
+        // JavaScript functionality can be added here
+        console.log('Profile page loaded');
+    </script>
+</body>
+</html>
+
+{% endblock %}

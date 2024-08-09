@@ -43,6 +43,10 @@ class Funcionariu(models.Model):
 		import datetime
 		age = datetime.date.today().year-self.data_do_nasc.year
 		return age
+    
+def is_birthday_today(self):
+        today = date.today()
+        return (self.data_do_nasc.month == today.month and self.data_do_nasc.day == today.day)
 
 class Salary(models.Model):
     employee = models.ForeignKey(Funcionariu, on_delete=models.CASCADE)

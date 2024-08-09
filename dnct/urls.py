@@ -11,7 +11,8 @@ urlpatterns=[
 	path('upload_csv/', upload_csv, name='upload_csv'),
     path('upload_success/', upload_success, name='upload_success'),
     path('update_detail_funcionariu/<str:id>/', updateDetailFuncionariu, name='update_detail_funcionariu'),
-    
+    path('birthday-notifications/', birthday_notifications, name='birthday_notifications'),
+	path('birthday-count/', birthday_count, name='birthday_count'),
 	# path('search/', search_view, name='search'),
 	
 ]

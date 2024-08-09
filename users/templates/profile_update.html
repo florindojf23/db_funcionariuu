@@ -1,0 +1,47 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <style>
+        /* Add your styles here */
+    </style>
+</head>
+<body>
+    <div class="unique-header-container">
+        <h1>My Application</h1>
+        <nav>
+            <a href="{% url 'users:profile_view' user.username %}">Back to Profile</a>
+        </nav>
+    </div>
+
+    <div class="profile-container">
+        <h1>Update Profile</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset>
+                <legend>User Information</legend>
+                {{ user_form.as_p }}
+            </fieldset>
+            <fieldset>
+                <legend>Profile Information</legend>
+                {{ profile_form.as_p }}
+            </fieldset>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript functionality can be added here
+    </script>
+</body>
+</html>
+
+
+{% endblock %}

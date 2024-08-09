@@ -337,5 +337,14 @@ def upload_success(request):
 # def upload_success(request):
 #     return render(request, 'success.html')
 
+def birthday_notifications(request):
+    print("Birthday notification view called")
+    today = date.today()
+    employees = Funcionariu.objects.filter(data_do_nasc__month=today.month, data_do_nasc__day=today.day)
+    return render(request, 'notification/halo_tinan.html', {'employees': employees})
 
+def birthday_count(request):
+    today = date.today()
+    birthday_count = Funcionariu.objects.filter(data_do_nasc__month=today.month, data_do_nasc__day=today.day).count()
+    return JsonResponse({'count': birthday_count})
 

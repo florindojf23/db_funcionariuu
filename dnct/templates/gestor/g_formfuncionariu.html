@@ -1,0 +1,119 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="col-sm-12 p-4">
+    <div class="breadcrumb-holder">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Varanda</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'funcionariu' %}">Lista dos Funcionários</a></li>
+                <li class="breadcrumb-item active">{{ title }}</li>
+            </ul>
+        </div>
+    </div>
+    <section>
+        <div class="container-fluid">
+            {% if messages %}
+                {% for message in messages %}
+                    <div id="divmessage" class="alert alert-{{ message.tags }} alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="row mt-3">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h4>{{ title }}</h4>
+                            {% if funcionariuData %}
+                                <br>
+                                <h1>{{ funcionariuData.nome_completo }}</h1>
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-end mb-3">
+                                <button class="btn btn-sm btn-info" title="Volta" onclick="self.history.back()">
+                                    <i class="fa fa-arrow-left"></i> Volta
+                                </button>
+                                <!-- {% if funcionariuData %}
+                                    <a href="{% url 'update_detail_funcionariu' funcionariuData.id %}" class="btn btn-sm btn-warning" title="Edit">
+                                        <i class="fa fa-edit"></i> Edit
+                                    </a>
+                                {% endif %} -->
+                                <button class="btn btn-sm btn-secondary" title="Print" onclick="window.print();">
+                                    <i class="fa fa-print"></i> Print
+                                </button>
+                            </div>
+                            {% if page == "form" %}
+                                <div class="card-body">
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {% crispy form %}
+                                        <!-- <div class="text-center">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div> -->
+                                    </form>
+                                </div>
+                            {% endif %}
+                            {% if page == "view" and funcionariuData %}
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <table class="table">
+                                                <tr><th>Nu. Id</th><td>{{ funcionariuData.nu_id }}</td></tr>
+                                                <tr><th>Nome Completo</th><td>{{ funcionariuData.nome_completo }}</td></tr>
+                                                <tr><th>Sexo</th><td>{{ funcionariuData.sexo }}</td></tr>
+                                                <tr><th>Direção/Unidade</th><td>{{ funcionariuData.direction }}</td></tr>
+                                                <tr><th>Cargo/Função</th><td>{{ funcionariuData.posição }}</td></tr>
+                                                <tr><th>Tipo de Contrato</th><td>{{ funcionariuData.estatuto }}</td></tr>
+                                                <tr><th>Naturalidade</th><td>{{ funcionariuData.naturalidade }}</td></tr>
+                                                <tr><th>Data do Nasc.</th><td>{{ funcionariuData.data_do_nasc }}</td></tr>
+                                                <tr><th>Idade</th><td>{{ funcionariuData.get_age }} Anos</td></tr>
+                                                <tr><th>Endereço</th><td>{{ funcionariuData.endereço }}</td></tr>
+                                                <tr><th>Município</th><td>{{ funcionariuData.município }}</td></tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <table class="table">
+                                                <tr><th>Data Entrada</th><td>{{ funcionariuData.data_entrada }}</td></tr>
+                                                <tr><th>Validade</th><td>{{ funcionariuData.validade }}</td></tr>
+                                                <tr><th>Status</th><td>{{ funcionariuData.estatus_onoff }}</td></tr>
+                                                <tr><th>Email</th><td>{{ funcionariuData.email }}</td></tr>
+                                                <tr><th>No. Contacto</th><td>{{ funcionariuData.nu_contacto }}</td></tr>
+                                                <tr><th>Grau/Escala</th><td>{{ funcionariuData.grau }}</td></tr>
+                                                <tr><th>Fotografia</th>
+                                                    <td>
+                                                        {% if funcionariuData.fotografia %}
+                                                            <img src="{{ funcionariuData.fotografia.url }}" width="200" />
+                                                        {% else %}
+                                                            <p>Nenhuma Fotografia disponível</p>
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                                <tr><th>Documento</th>
+                                                    <td>
+                                                        {% if funcionariuData.documentos %}
+                                                            <a href="{{ funcionariuData.documentos.url }}" target="_blank">Ver Documento</a>:  {{ funcionariuData.documentos.name }}
+                                                        {% else %}
+                                                            Nenhum Documento enviado
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+{% endblock %}

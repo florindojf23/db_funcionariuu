@@ -31,7 +31,7 @@ def g_funcionariu(request):
     'active_estudante':"active",
     'dadus':listafuncionariu
     }
-    return render(request, 'gestor/listafuncionariu.html',data)
+    return render(request, 'gestor/g_listafuncionariu.html',data)
 
 @login_required
 def g_detailFuncionariu(request,pk):
@@ -42,7 +42,7 @@ def g_detailFuncionariu(request,pk):
     'page':"view",
     'active_estudante':"active",
     }
-    return render(request, 'gestor/formfuncionariu.html',data)
+    return render(request, 'gestor/g_formfuncionariu.html',data)
 
 @login_required
 def csv_funcionariu(request):
@@ -128,7 +128,7 @@ def g_leave(request):
     'active_estudante':"active",
     'dadus':listalicensafuncionariu
     }
-    return render(request, 'gestor/listaleaves.html',data)
+    return render(request, 'gestor/g_listaleaves.html',data)
 
 
 @login_required
@@ -142,7 +142,7 @@ def detailLeave(request, pk):
         'page': "view",
         'active_estudante': "active",
     }
-    return render(request, 'gestor/formleaves.html', data)
+    return render(request, 'gestor/g_formleaves.html', data)
 
 @login_required
 def csv_leave(request):
@@ -188,9 +188,9 @@ def archive_leave(request, leave_id):
 @login_required
 def leave_list(request):
     leaves = Leave.objects.filter(archived=False)
-    return render(request, 'gestor/list_leaves.html', {'leaves': leaves, 'title': 'Leave List'})
+    return render(request, 'gestor/g_list_leaves.html', {'leaves': leaves, 'title': 'Leave List'})
 
 @login_required
 def g_history_leave(request):
     archived_leaves = Leave.objects.filter(archived=True)
-    return render(request, 'gestor/history_leave.html', {'archived_leaves': archived_leaves, 'title': 'Archived Leave History'})
+    return render(request, 'gestor/g_history_leave.html', {'archived_leaves': archived_leaves, 'title': 'Archived Leave History'})

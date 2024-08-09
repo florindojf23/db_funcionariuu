@@ -1,0 +1,29 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>Leave List</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <ul>
+        {% for leave in leaves %}
+            <li>{{ leave.employee.nome_completo }} - {{ leave.leave_type }} ({{ leave.start_date }} to {{ leave.end_date }})
+                <a href="{% url 'archive_leave' leave.id %}">Archive</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'history_leave' %}">View Archived Leaves</a>
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Birthday Notifications</title>
+    <style>
+        table {
+            width: 80%;
+            margin: 0 auto; /* Center the table */
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #085297; /* Sky blue color */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center">PARABÉNS</h1>
+    <br>
+    {% if employees %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nú</th>
+                    <th>Nome do Funcionário</th>
+                    <th>Data do Nascimento</th>
+                    <th>Aniversário Para</th>
+                    <th>Mensagem</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ employee.nome_completo }}</td>
+                        <td>{{ employee.data_do_nasc|date:"F j, Y" }}</td>
+                        <td>{{ employee.get_age }} Anos</td>
+                        <td>Happy Birthday!</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No birthdays today.</p>
+    {% endif %}
+</body>
+</html>
+{% endblock %}
